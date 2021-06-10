@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Hello, world!</h1>
+<br>
+{{ api_response.0 }}
+<br>
+<br>
+Air Quality: {{ api_response.0.AQI }}
+
+{% endblock %}
