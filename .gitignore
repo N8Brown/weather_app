@@ -1,9 +1,13 @@
 env/
 .vscode/
+development_assets/
+
 weather_app/db.sqlite3
+
 
 weather_app/weather_app/__pycache__/
 weather_app/weather_app/settings.py
 
 weather_app/weather/__pycache__/
 weather_app/weather/migrations/
+weather_app/weather/api_key.py

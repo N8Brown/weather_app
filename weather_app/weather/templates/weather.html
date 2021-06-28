@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <section class="row justify-content-center">
+    <form action="{% url 'weather' %}" class="d-flex col-md-8" method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        <input class="form-control text-center" type="search" placeholder="Search City or Zipcode" aria-label="Search" name="location">
+        <button class="btn btn-primary" type="submit">Search</button>  
+      </div>
+    </form>  
+  </section>
+
+  <br>
+
+{% if alert %}
+  <br>
+  <div class="col-md-8 m-auto text-center alert alert-danger alert-dismissible fade show" role="alert">
+      {{ alert }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endif %}
+
+
+{% if api_response %}
+  {% if api_response == 'Error' %}
+  <br>
+  <div class="col-md-8 m-auto text-center alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Error:</strong> There was an issue fetching the data. Please try again.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% else %}
+    <section class="row justify-content-center">
+      <h2 class="text-center">Current Conditions</h2>
+      <div class="card col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">{{ api_response.location.name }}, {{ api_response.location.region }}</h5>
+          <h6 class="card-subtitle mb-2">As of {{ current_time | time:"P" }}</h6>
+          <section class="current-conditions-container">
+              <div>
+                  <span id="current-temp">{{ api_response.current.temp_f | floatformat:0 }}&#176;</span>
+                  <p>Feels like {{ api_response.current.feelslike_f | floatformat:0 }}&#176;</p>
+              </div>
+              <div>
+                  <img src="{{ api_response.current.condition.icon }}" alt="">
+                  <p>{{ api_response.current.condition.text }}</p>
+              </div>
+          </section>
+          
+          <section>
+            <p>{{ api_response.current.wind_dir }} winds {{ api_response.current.wind_mph | floatformat:0 }}mph</p>
+          </section>
+
+          {% if api_response.alerts.alert %}
+            <section class="mt-4">
+              <div class="accordion" id="accordionFlushExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed alert alert-danger" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                      &#9888; Weather Alert
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body alert alert-danger mb-0">
+                      <p>{{ api_response.alerts.alert.0.headline }} for the following areas:</p>
+                      <p>{{ api_response.alerts.alert.0.areas }}</p>
+                      <p>{{ api_response.alerts.alert.0.desc }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="three-day-forecast row justify-content-center">
+      <h2>3-Day Forecast</h2>
+      <div class="card col-md-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ day1 }}</h5>
+          <h6 class="card-subtitle mb-2">{{ api_response.forecast.forecastday.0.day.maxtemp_f | floatformat:0 }}&#176; / {{ api_response.forecast.forecastday.0.day.mintemp_f | floatformat:0 }}&#176;</h6>
+          <img src="{{ api_response.forecast.forecastday.0.day.condition.icon }}" alt="">
+          <p class="card-text">{{ api_response.forecast.forecastday.0.day.condition.text }}</p>
+          <p class="mt-4 mb-0"><small>Sunrise: {{ sunrises.0 | time:"P" }}</small></p>
+          <p><small>Sunset: {{ sunsets.0 | time:"P" }}</small></p>
+        </div>
+      </div>
+
+      <div class="card col-md-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ day2 }}</h5>
+          <h6 class="card-subtitle mb-2">{{ api_response.forecast.forecastday.1.day.maxtemp_f | floatformat:0 }}&#176; / {{ api_response.forecast.forecastday.1.day.mintemp_f | floatformat:0 }}&#176;</h6>
+          <img src="{{ api_response.forecast.forecastday.1.day.condition.icon }}" alt="">
+          <p class="card-text">{{ api_response.forecast.forecastday.1.day.condition.text }}</p>
+          <p class="mt-4 mb-0"><small>Sunrise {{ sunrises.1 | time:"P"}}</small></p>
+          <p><small>Sunset: {{ sunsets.1 | time:"P" }}</small></p>
+        </div>
+      </div>
+
+      <div class="card col-md-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ day3 }}</h5>
+          <h6 class="card-subtitle mb-2">{{ api_response.forecast.forecastday.2.day.maxtemp_f | floatformat:0 }}&#176; / {{ api_response.forecast.forecastday.2.day.mintemp_f | floatformat:0 }}&#176;</h6>
+          <img src="{{ api_response.forecast.forecastday.2.day.condition.icon }}" alt="">
+          <p class="card-text">{{ api_response.forecast.forecastday.2.day.condition.text }}</p>
+            <p class="mt-4 mb-0"><small>Sunrise {{ sunrises.2 | time:"P"}}</small></p>
+            <p ><small>Sunset: {{ sunsets.2 | time:"P" }}</small></p>
+        </div>
+      </div>
+    </section>
+
+  {% endif %}
+{% endif %}
+
+{% endblock %}

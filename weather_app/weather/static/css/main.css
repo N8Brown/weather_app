@@ -1,0 +1,45 @@
+h2 {
+    color: #6c757d;
+}
+
+.accordion-button {
+    margin-bottom: 0 !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #842029;
+    background-color: #f8d7da;
+}
+
+.current-conditions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.three-day-forecast {
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+}
+
+.card {
+    margin: 1rem 0;
+    color: #fff;
+    border: none;
+    border-radius: none;
+}
+
+.card-body {
+    background-color: #0d6efd;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.row {
+    margin: 1rem 0;
+}
+
+#current-temp {
+    font-size: 3rem;
+}
