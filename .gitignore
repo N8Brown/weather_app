@@ -3,7 +3,7 @@ env/
 development_assets/
 
 weather_app/db.sqlite3
-
+weather_app/static/
 
 weather_app/weather_app/__pycache__/
 weather_app/weather_app/settings.py
