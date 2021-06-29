@@ -4,7 +4,7 @@ A Django weather web-application that shows the current conditions as well as a 
 ![Weather Application](weather-app.jpg)
 
 ## About
-This weather application is powered by the free version of [Weather API](https://www.weatherapi.com/). The frontend was built using [Bootstrap](https://getbootstrap.com/), while the back end is powered by the [Django](https://www.djangoproject.com/) framework. Users can search for weather information by entering any of the following into the search bar:
+This weather application is powered by the free version of [Weather API](https://www.weatherapi.com/). The frontend is built using [Bootstrap](https://getbootstrap.com/), while the back end is powered by the [Django](https://www.djangoproject.com/) framework. Users can search for weather information by entering any of the following into the search bar:
 * City Name
 * US Zipcode
 * UK Postcode
