@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
-def weather(request):
+
+def error_404(request, exception):
+    return redirect('/')
+
+def home(request):
     import json, requests, datetime
     from .api_key import key
 
@@ -23,7 +27,7 @@ def weather(request):
                         alert = f"You searched: {location}. {api_response['error']['message']}"
                     else:
                         alert = "Something went wrong. Please try again later."
-                    return render(request, 'weather.html', {'alert':alert})
+                    return render(request, 'weather/home.html', {'alert':alert})
                 else:
                     days_str = [day['date']+' ' for day in api_response['forecast']['forecastday']]
                     sunrises_str = [day['astro']['sunrise'] for day in api_response['forecast']['forecastday']]
@@ -42,9 +46,8 @@ def weather(request):
                     day3 = day_segments[2][0] + ' ' + day_segments[2][2]
                     
                     current_time = datetime.datetime.strptime(api_response['location']['localtime'], '%Y-%m-%d %H:%M')
-                    # current_time = datetime.datetime.now()
 
-                    context = {
+                    data = {
                         'api_response':api_response,
                         'current_time':current_time,
                         'day1':day1,
@@ -54,9 +57,9 @@ def weather(request):
                         'sunsets':sunsets,
                     }
 
-                    return render(request, 'weather.html', context)
+                    return render(request, 'weather/home.html', data)
         else:
             alert = "Please enter a location."
-            return render(request, 'weather.html', {'alert':alert})
+            return render(request, 'weather/home.html', {'alert':alert})
     else:
-        return render(request, 'weather.html')
+        return render(request, 'weather/home.html')

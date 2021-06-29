@@ -3,7 +3,7 @@
 {% block content %}
 
   <section class="row justify-content-center">
-    <form action="{% url 'weather' %}" class="d-flex col-md-8" method="POST">
+    <form action="{% url 'weather:home' %}" class="d-flex col-md-8" method="POST">
       {% csrf_token %}
       <div class="input-group">
         <input class="form-control text-center" type="search" placeholder="Search City or Zipcode" aria-label="Search" name="location">
@@ -49,7 +49,7 @@
           </section>
           
           <section>
-            <p>{{ api_response.current.wind_dir }} winds {{ api_response.current.wind_mph | floatformat:0 }}mph</p>
+            <p>Winds: {{ api_response.current.wind_mph | floatformat:0 }}<small>mph</small> {{ api_response.current.wind_dir }}</p>
           </section>
 
           {% if api_response.alerts.alert %}
