@@ -1,8 +1,5 @@
 from django.shortcuts import render
 
-# api_request = requests.get('http://api.weatherapi.com/v1/forecast.json?key=4f506553666f42c0b5f190311211706&q=04090&days=3&aqi=no&alerts=yes')
-
-
 def weather(request):
     import json, requests, datetime
     from .api_key import key
@@ -45,6 +42,7 @@ def weather(request):
                     day3 = day_segments[2][0] + ' ' + day_segments[2][2]
                     
                     current_time = datetime.datetime.strptime(api_response['location']['localtime'], '%Y-%m-%d %H:%M')
+                    # current_time = datetime.datetime.now()
 
                     context = {
                         'api_response':api_response,
