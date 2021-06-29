@@ -32,7 +32,7 @@ Successful searches will return the current conditions, as well as three-day for
 * Sunset Time
 
 ## Inspiration
-This project was inspired by a [Codemy](https://codemy.com/) tutorial course from [John Elder](https://twitter.com/flatplanet). The tutorial project included a web-applicatoin that displayed air quality conditions for a given zipcode, utilizing the [AirNow](https://docs.airnowapi.org/) API. 
+This project was inspired by a [Codemy](https://codemy.com/build-weather-app-python-django/) tutorial course from [John Elder](https://twitter.com/flatplanet). The tutorial project included a web-applicatoin that displayed air quality conditions for a given zipcode, utilizing the [AirNow](https://docs.airnowapi.org/) API. 
 
 ## Technologies
 This project was developed using:
