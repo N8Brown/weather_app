@@ -48,6 +48,6 @@ This project was developed using:
 ## Meta
 [Nathan Brown](https://www.nathanabrown.com) - [@_N8_Brown](https://twitter.com/_N8_Brown) - contact@nathanabrown.com 
 
-https://github.com/N8Brown/weather_app
-
 https://www.weatherstation.nathanabrown.com/
+
+https://github.com/N8Brown/weather_app
