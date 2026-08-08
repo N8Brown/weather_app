@@ -42,12 +42,3 @@ This project was developed using:
 * Django 3.2.4
 
 [![Weather API Logo](https://cdn.weatherapi.com/v4/images/weatherapi_logo.png)](https://www.weatherapi.com/)
-
-
-
-## Meta
-[Nathan Brown](https://www.nathanabrown.com) - [@_N8_Brown](https://twitter.com/_N8_Brown) - contact@nathanabrown.com 
-
-https://www.weatherstation.nathanabrown.com/
-
-https://github.com/N8Brown/weather_app
